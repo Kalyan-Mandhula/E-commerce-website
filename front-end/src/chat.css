@@ -1,0 +1,54 @@
+.chat{
+    position: fixed;
+    bottom: 80px ;
+    right:20px ;
+    z-index: 2;
+    background-color: blue;
+    border-radius: 50px;
+    height:50px ;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.chat .close{
+   display: none;
+}
+
+.check:checked ~ .chat .chat-icon{
+    display: none;
+}
+
+.check:checked ~ .chat .close{
+    display: block;
+}
+
+.check {
+    display: none !important;
+}
+
+.chatcard {
+    position: fixed;
+    bottom: 130px ;
+    right : 50px ;
+    display: none;
+    z-index: 2;
+}
+
+.check:checked ~ .chatcard{
+    display: block;
+}
+
+.admin-mssg{
+    margin-left: 3rem;
+    max-width: 12rem;
+    justify-content: center;
+}
+
+.admin-mssg p {
+    display: inline;
+}
+
+
