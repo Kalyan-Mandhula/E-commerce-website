@@ -595,6 +595,119 @@ const products = [
     reviewsNumber: 9,
     reviews: [],
   },
+  {
+    name: "Product 460",
+    description:
+      "Product Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ipsa ducimus architecto explicabo id accusantium nihil exercitationem autem porro esse.",
+    count: 25,
+    price: 500,
+    category: "Books",
+    images: [
+      { path: "/images/monitors-category.png" },
+      { path: "/images/games-category.png" },
+      { path: "/images/tablets-category.png" },
+    ],
+    rating: 3,
+    reviewsNumber: 9,
+    reviews: [],
+  },
+  {
+    name: "Product 450",
+    description:
+      "Product Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ipsa ducimus architecto explicabo id accusantium nihil exercitationem autem porro esse.",
+    count: 25,
+    price: 500,
+    category: "Books",
+    images: [
+      { path: "/images/monitors-category.png" },
+      { path: "/images/games-category.png" },
+      { path: "/images/tablets-category.png" },
+    ],
+    rating: 3,
+    reviewsNumber: 9,
+    reviews: [],
+  },
+  {
+    name: "Product 459",
+    description:
+      "Product Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ipsa ducimus architecto explicabo id accusantium nihil exercitationem autem porro esse.",
+    count: 25,
+    price: 500,
+    category: "Books",
+    images: [
+      { path: "/images/monitors-category.png" },
+      { path: "/images/games-category.png" },
+      { path: "/images/tablets-category.png" },
+    ],
+    rating: 3,
+    reviewsNumber: 9,
+    reviews: [],
+  },
+  {
+    name: "Product 458",
+    description:
+      "Product Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ipsa ducimus architecto explicabo id accusantium nihil exercitationem autem porro esse.",
+    count: 25,
+    price: 500,
+    category: "Books",
+    images: [
+      { path: "/images/monitors-category.png" },
+      { path: "/images/games-category.png" },
+      { path: "/images/tablets-category.png" },
+    ],
+    rating: 3,
+    reviewsNumber: 9,
+    reviews: [],
+  },
+  {
+    name: "Product 457",
+    description:
+      "Product Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ipsa ducimus architecto explicabo id accusantium nihil exercitationem autem porro esse.",
+    count: 25,
+    price: 500,
+    category: "Books",
+    images: [
+      { path: "/images/monitors-category.png" },
+      { path: "/images/games-category.png" },
+      { path: "/images/tablets-category.png" },
+    ],
+    rating: 3,
+    reviewsNumber: 9,
+    reviews: [],
+  },
+  {
+    name: "Product 456",
+    description:
+      "Product Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ipsa ducimus architecto explicabo id accusantium nihil exercitationem autem porro esse.",
+    count: 25,
+    price: 500,
+    category: "Books",
+    images: [
+      { path: "/images/monitors-category.png" },
+      { path: "/images/games-category.png" },
+      { path: "/images/tablets-category.png" },
+    ],
+    rating: 3,
+    reviewsNumber: 9,
+    reviews: [],
+  },
+  {
+    name: "Product 454",
+    description:
+      "Product Description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni ipsa ducimus architecto explicabo id accusantium nihil exercitationem autem porro esse.",
+    count: 25,
+    price: 500,
+    category: "Books",
+    images: [
+      { path: "/images/monitors-category.png" },
+      { path: "/images/games-category.png" },
+      { path: "/images/tablets-category.png" },
+    ],
+    rating: 3,
+    reviewsNumber: 9,
+    reviews: [],
+  },
+
 ]
 
 module.exports = products

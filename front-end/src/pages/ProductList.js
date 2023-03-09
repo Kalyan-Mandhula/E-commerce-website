@@ -7,8 +7,6 @@ import { useParams } from "react-router-dom";
 
 const ProductList = () => {
 
-  const {category,productName} = useParams()
-
   const GetProducts = async(Category)=>{
       const {data} = await axios.get(`/api/products/getProductsByCategory/${Category}`)
       return data 

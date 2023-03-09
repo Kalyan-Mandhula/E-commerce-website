@@ -66,13 +66,16 @@ function Header() {
         dispatch(CategoryFetch(res));
       })
       .catch((err) => console.log(err));
-  }, [User]);
+  }, []);
 
   const SearchProducts = () => {
-    navigate(`/product_list/${categoryName}/${productName}`);
-    document.getElementsByClassName("Search")[0].value=""
-    setCategoryName(null);
-    setproductName(null);
+    if(!categoryName && !productName){
+    }else{
+      navigate(`/product_list/${categoryName}/${productName}`);
+      document.getElementsByClassName("Search")[0].value=""
+      setCategoryName(null);
+      setproductName(null);
+    }
   };
 
   return (
@@ -90,30 +93,12 @@ function Header() {
           <Nav className="me-auto ">
             <Nav>
               <InputGroup>
-                <DropdownButton
-                  id="dropdown-basic-button"
-                  title={categoryName ? categoryName : "All"}
-                  className="rounded-0"
-                >
-                  <Dropdown.Item onClick={(e) => setCategoryName("All")}>
-                    All
-                  </Dropdown.Item>
-                  {categories
-                    ? categories.map((category, idx) => (
-                        <Dropdown.Item
-                          onClick={(e) => setCategoryName(category.name)}
-                          key={idx}
-                        >
-                          {category.name}
-                        </Dropdown.Item>
-                      ))
-                    : ""}
-                </DropdownButton>
                 <Form.Group controlId="formBasicPassword">
                   <Form.Control
                     type="text"
-                    className="rounded-0 h-100 border-0 Search"
+                    className=" h-100  Search"
                     placeholder="Search in shop..."
+                    style={{borderTopLeftRadius:"5px", border:"none"}}
                     onChange={(e) => {
                       setproductName(e.target.value);
                     }}

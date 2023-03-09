@@ -42,7 +42,9 @@ const ProductDetailsComponent = ({ GetProductDetails , CheckLoggedIn ,AddReview,
       .catch((err) => console.log(err));
     }else if(productName){
       GetProductDetailsByName(productName)
-      .then((res) => setProductDetails(res))
+      .then((res) =>{
+        setProductDetails(res)
+      } )
       .catch((err) => console.log(err));
     }
   }, [productDetails,reviewAdded]);
@@ -76,134 +78,142 @@ const ProductDetailsComponent = ({ GetProductDetails , CheckLoggedIn ,AddReview,
     }
   };
 
-  return (
-    <Container style={{ maxWidth: "92%" }}>
-      <Alert show={showAlert} variant="success" className="mt-2" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Added to cart</Alert.Heading>
-      </Alert>
-      <Row className="mt-5">
-        <Col md={4}>
-          {productDetails.images
-            ? productDetails.images.map((image, idx) => (
-                <Image fluid src={image.path} key={idx} className="mb-2" />
-              ))
-            : ""}
-        </Col>
-        <Col md={8}>
-          <Row>
-            <Col md={7} lg={8}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <h4>{productDetails.name}</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Rating
-                    readonly
-                    size={20}
-                    initialValue={productDetails.rating}
-                  />{" "}
-                  ({productDetails.reviewsNumber})
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Price : <b>Rs. {productDetails.price}</b>
-                </ListGroup.Item>
-                <ListGroup.Item>{productDetails.description}</ListGroup.Item>
-              </ListGroup>
+  {
+    if(productDetails){
+      return (
+        <Container style={{ maxWidth: "92%" }}>
+          <Alert show={showAlert} variant="success" className="mt-2" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading>Added to cart</Alert.Heading>
+          </Alert>
+          <Row className="mt-5">
+            <Col md={4}>
+              {productDetails.images
+                ? productDetails.images.map((image, idx) => (
+                    <Image fluid src={image.path} key={idx} className="mb-2" />
+                  ))
+                : ""}
             </Col>
-            <Col md={5} lg={4}>
-              <ListGroup>
-                <ListGroup.Item>
-                  Status :{" "}
-                  {productDetails.count > 0 ? "In Stock" : "Out of stock"}
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  Price :{" "}
-                  <h6 className="d-inline">Rs. {productDetails.price}</h6>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <span className="d-inline">Quantity : </span>
-                  <Form.Select
-                    onChange={(e) => {
-                        setQuantity(e.target.value)
-                    }    
-                    }
-                    value={quantity > 0 ? quantity : 1}
-                    size="md"
-                    aria-label="Default select example"
-                    className="d-inline w-75"
-                  >
-                    {Array.from({ length: productDetails.count }).map(
-                      (_, idx) => (
-                        <option key={idx} value={idx + 1}>
-                          {idx + 1}
-                        </option>
-                      )
-                    )}
-                  </Form.Select>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Button variant="danger" onClick={() => { AddToCart()}}>
-                    Add to cart
-                  </Button>
-                </ListGroup.Item>
-              </ListGroup>
+            <Col md={8}>
+              <Row>
+                <Col md={7} lg={8}>
+                  <ListGroup variant="flush">
+                    <ListGroup.Item>
+                      <h4>{productDetails.name}</h4>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Rating
+                        readonly
+                        size={20}
+                        initialValue={productDetails.rating}
+                      />{" "}
+                      ({productDetails.reviewsNumber})
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Price : <b>Rs. {productDetails.price}</b>
+                    </ListGroup.Item>
+                    <ListGroup.Item>{productDetails.description}</ListGroup.Item>
+                  </ListGroup>
+                </Col>
+                <Col md={5} lg={4}>
+                  <ListGroup>
+                    <ListGroup.Item>
+                      Status :{" "}
+                      {productDetails.count > 0 ? "In Stock" : "Out of stock"}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      Price :{" "}
+                      <h6 className="d-inline">Rs. {productDetails.price}</h6>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <span className="d-inline">Quantity : </span>
+                      <Form.Select
+                        onChange={(e) => {
+                            setQuantity(e.target.value)
+                        }    
+                        }
+                        value={quantity > 0 ? quantity : 1}
+                        size="md"
+                        aria-label="Default select example"
+                        className="d-inline w-75"
+                      >
+                        {Array.from({ length: productDetails.count }).map(
+                          (_, idx) => (
+                            <option key={idx} value={idx + 1}>
+                              {idx + 1}
+                            </option>
+                          )
+                        )}
+                      </Form.Select>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      <Button variant="danger" onClick={() => { AddToCart()}}>
+                        Add to cart
+                      </Button>
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="mt-5">
+                  <h5>REVIEWS</h5>
+                  <ListGroup variant="flush">
+                    {productDetails.reviews
+                      ? productDetails.reviews.map((review, idx) => (
+                          <ListGroup.Item key={idx}>
+                            <p>
+                              <b>{review.user.name +" "+review.user.lastName}</b>
+                            </p>
+                            <p>
+                              <Rating
+                                readonly
+                                size={20}
+                                initialValue={review.rating}
+                              />
+                            </p>
+                            <p>Date :{review.createdAt.substring(0, 10)}</p>
+                            <h6 className="d-inline">Review :</h6>
+                            <p className="d-inline">{review.comment}</p>
+                          </ListGroup.Item>
+                        ))
+                      : ""}
+                  </ListGroup>
+                </Col>
+              </Row>
+              <hr />
+              <Alert variant="danger" show={!login}>Login first to write a review</Alert>
+              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>Example textarea</Form.Label>
+                  <Form.Control as="textarea" rows={3} required  name="comment" disabled={!login} className="comment"/>
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+                <FormGroup  controlId="validationCustom02" >
+                <Form.Select aria-label="Default select example" required name="rating" disabled={!login}  className="rating">
+                  <option value="your rating">Your rating</option>
+                  <option value={5}>5 - Very good</option>
+                  <option value={4}>4 - Good</option>
+                  <option value={3}>3 - Average</option>
+                  <option value={2}>2 - Bad</option>
+                  <option value={1}>1 - Very bad</option>
+                </Form.Select>
+                </FormGroup>
+                <Button variant="primary" className="mt-2" type="submit" disabled={!login}>
+                  Submit
+                </Button>
+              </Form>
             </Col>
           </Row>
-          <Row>
-            <Col className="mt-5">
-              <h5>REVIEWS</h5>
-              <ListGroup variant="flush">
-                {productDetails.reviews
-                  ? productDetails.reviews.map((review, idx) => (
-                      <ListGroup.Item key={idx}>
-                        <p>
-                          <b>{review.user.name +" "+review.user.lastName}</b>
-                        </p>
-                        <p>
-                          <Rating
-                            readonly
-                            size={20}
-                            initialValue={review.rating}
-                          />
-                        </p>
-                        <p>Date :{review.createdAt.substring(0, 10)}</p>
-                        <h6 className="d-inline">Review :</h6>
-                        <p className="d-inline">{review.comment}</p>
-                      </ListGroup.Item>
-                    ))
-                  : ""}
-              </ListGroup>
-            </Col>
-          </Row>
-          <hr />
-          <Alert variant="danger" show={!login}>Login first to write a review</Alert>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} required  name="comment" disabled={!login} className="comment"/>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-            <FormGroup  controlId="validationCustom02" >
-            <Form.Select aria-label="Default select example" required name="rating" disabled={!login}  className="rating">
-              <option value="your rating">Your rating</option>
-              <option value={5}>5 - Very good</option>
-              <option value={4}>4 - Good</option>
-              <option value={3}>3 - Average</option>
-              <option value={2}>2 - Bad</option>
-              <option value={1}>1 - Very bad</option>
-            </Form.Select>
-            </FormGroup>
-            <Button variant="primary" className="mt-2" type="submit" disabled={!login}>
-              Submit
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
-  );
+        </Container>
+      );
+    }else{
+    return <Alert variant="danger">No such product available</Alert>
+    }
+  }
+
+  
 };
 
 export default ProductDetailsComponent;
