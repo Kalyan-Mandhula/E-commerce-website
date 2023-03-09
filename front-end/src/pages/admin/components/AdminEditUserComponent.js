@@ -3,13 +3,14 @@ import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 export default function AdminEditUserComponent({GetUser,UpdateUser}) {
   const [validated, setValidated] = useState(false);
   const [data,setData]= useState({})
   const {id} = useParams()
+  const navigate = useNavigate()
 
   useEffect(()=>{
     GetUser(id).then((res)=>{
@@ -25,7 +26,7 @@ export default function AdminEditUserComponent({GetUser,UpdateUser}) {
       const form = event.currentTarget
       const isAdmin = form.isAdmin.checked
       UpdateUser(data._id,isAdmin)
-      window.location.href = "/admin/users"
+      navigate("/admin/users")
     }
 
     setValidated(true);

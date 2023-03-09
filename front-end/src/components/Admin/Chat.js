@@ -21,17 +21,23 @@ const Chat = () => {
         setChat((chat) => {
             return [...chat, { Supershop: "Sorry no admins available now" }];
         })
+        const chatMessages = document.querySelector(".chat-mssg");
+        chatMessages.scrollTop = chatMessages.scrollHeight 
        })
 
       socket.on("server sends admin mssg to client",(mssg)=>{
         setChat((chat)=>[...chat,{admin:mssg}])
         setmessageRecievedFromAdmin(true)
+        const chatMessages = document.querySelector(".chat-mssg");
+        chatMessages.scrollTop = chatMessages.scrollHeight
       })
 
       socket.on("disconnected",()=>{
         setChat((chat) => {
           return [...chat, { Supershop: "Sorry admin has disconnected" }];
       })
+      const chatMessages = document.querySelector(".chat-mssg");
+      chatMessages.scrollTop = chatMessages.scrollHeight
       })
 
       setSocket(socket);
@@ -55,7 +61,7 @@ const Chat = () => {
         <input type="checkbox" id="check" className="check" />
         <Card style={{ width: "20rem" , height:"25rem" }} className="chatcard border-none ">
           <Card.Header className="bg-primary text-white text-center">Let's chat - Online</Card.Header>
-          <Card.Body  style={{ overflowY: "auto" , height:"22rem"}}>
+          <Card.Body  style={{ overflowY: "auto" , height:"22rem"}}  className="chat-mssg">
             {
               chat ? chat.map((person,idx)=>{
                 return <Fragment key={idx}>

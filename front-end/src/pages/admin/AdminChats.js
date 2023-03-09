@@ -34,6 +34,8 @@ function AdminChats() {
     dispatch(messageRecieved(false))
     event.target.adminMessage.value=""
     setMssgSent(!mssgSent)
+    const chatMessages = document.querySelector(".chat-mssg");
+    chatMessages.scrollTop = chatMessages.scrollHeight
 }
 
 
@@ -54,7 +56,7 @@ function AdminChats() {
               <small>11 mins ago</small>
             </Toast.Header>
             <div style={{maxHeight:"300px",textOverflow:"auto"}} >
-            <Toast.Body style={{maxHeight:"300px"}} className="overflow-auto">   
+            <Toast.Body style={{maxHeight:"300px"}} className="overflow-auto chat-mssg">   
               {
                  value.map((chat,idx)=>{
                   return <Fragment key={idx}>

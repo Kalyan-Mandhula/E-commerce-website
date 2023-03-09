@@ -96,9 +96,9 @@ function Header() {
                 <Form.Group controlId="formBasicPassword">
                   <Form.Control
                     type="text"
-                    className=" h-100  Search"
+                    className="rounded-0 rounded-start h-100  Search"
                     placeholder="Search in shop..."
-                    style={{borderTopLeftRadius:"5px", border:"none"}}
+                    style={{border:"none"}}
                     onChange={(e) => {
                       setproductName(e.target.value);
                     }}
@@ -168,7 +168,8 @@ function Header() {
               </>
             )}
 
-            <LinkContainer to="/cart">
+            {
+              !User.isAdmin ? <LinkContainer to="/cart">
               <Nav.Link href="/cart">
                 <i className="bi bi-cart3 me-1 "></i>
                 <span>Cart</span>
@@ -176,7 +177,10 @@ function Header() {
                   {itemsCount > 0 ? itemsCount : ""}
                 </MDBBadge>
               </Nav.Link>
-            </LinkContainer>
+            </LinkContainer> : ""
+            }
+
+            
           </Nav>
         </Navbar.Collapse>
       </Container>
