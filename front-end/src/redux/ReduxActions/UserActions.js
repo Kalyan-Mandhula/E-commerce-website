@@ -6,9 +6,9 @@ const UserLogin = (UserDetails)=>(dispatch)=>{
     })
 }
 
-export  const UserLogout =()=>(dispatch)=>{
+export  const UserLogout =()=>async (dispatch)=>{
     window.location.href ="/login"
-    axios.get("/api/logout")
+    await axios.get("/api/logout")
     localStorage.removeItem("User")
     sessionStorage.removeItem("User")
     localStorage.removeItem("cart")
